@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="10dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/tvRecipeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recipe Name"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#5D4037" />
+
+    <TextView
+        android:id="@+id/tvRecipeDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recipe ingredients available"
+        android:textSize="14sp"
+        android:textColor="#555555"
+        android:layout_marginTop="6dp" />
+
+    <Button
+        android:id="@+id/btnViewRecipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Recipe"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#B87845"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>

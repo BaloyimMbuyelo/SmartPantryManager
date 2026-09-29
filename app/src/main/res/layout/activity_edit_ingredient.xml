@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -54,13 +55,13 @@
         android:layout_marginBottom="25dp" />
 
     <Button
-        android:id="@+id/btnSaveIngredient"
+        android:id="@+id/btnUpdateIngredient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save Ingredient"
+        android:text="Update Ingredient"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:backgroundTint="#B87845"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#B87845" />
 
 </LinearLayout>

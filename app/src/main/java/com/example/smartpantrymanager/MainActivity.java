@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
                 new LinearLayoutManager(this)
         );
 
-        Button btnAddIngredient = findViewById(R.id.btnAddIngredient);
+        Button btnAddIngredient =
+                findViewById(R.id.btnAddIngredient);
 
         btnAddIngredient.setOnClickListener(v -> {
 
@@ -53,12 +54,37 @@ public class MainActivity extends AppCompatActivity {
         loadPantryItems();
     }
 
-    private void loadPantryItems() {
+    public void loadPantryItems() {
 
         Cursor cursor = databaseHelper.getAllPantryItems();
 
-        pantryAdapter = new PantryAdapter(cursor);
+        pantryAdapter = new PantryAdapter(
+                this,
+                cursor
+        );
 
         recyclerViewPantry.setAdapter(pantryAdapter);
+    }
+
+    public void openEditIngredient(
+            int id,
+            String name,
+            double quantity,
+            String unit,
+            String expiryDate
+    ) {
+
+        Intent intent = new Intent(
+                MainActivity.this,
+                EditingIngredientActivity.class
+        );
+
+        intent.putExtra("id", id);
+        intent.putExtra("name", name);
+        intent.putExtra("quantity", quantity);
+        intent.putExtra("unit", unit);
+        intent.putExtra("expiryDate", expiryDate);
+
+        startActivity(intent);
     }
 }
