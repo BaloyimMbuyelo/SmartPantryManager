@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#F8F5F0">
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="← Back"
+        android:textSize="14sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#B87845"
+        android:layout_marginBottom="15dp" />
+
+    <TextView
+        android:id="@+id/tvSettingsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#4A3328"
+        android:paddingBottom="24dp" />
+
+    <TextView
+        android:id="@+id/tvExpiryDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Expiry Alerts"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#4A3328" />
+
+    <TextView
+        android:id="@+id/tvExpiryInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enable alerts for pantry ingredients that are approaching their expiry date."
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:paddingTop="6dp"
+        android:paddingBottom="12dp" />
+
+    <Switch
+        android:id="@+id/switchExpiryAlerts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enable expiry alerts"
+        android:textSize="16sp"
+        android:checked="true" />
+
+</LinearLayout>

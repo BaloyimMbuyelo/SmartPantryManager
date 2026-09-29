@@ -2,6 +2,7 @@ package com.example.smartpantrymanager;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,9 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class SuggestedRecipesActivity extends AppCompatActivity {
@@ -27,6 +26,10 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_suggested_recipes);
+
+        Button btnBack = findViewById(R.id.btnBack);
+
+        btnBack.setOnClickListener(v -> finish());
 
         databaseHelper = new DatabaseHelper(this);
 
@@ -124,17 +127,18 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
             Set<String> pantryIngredients
     ) {
 
-        Cursor ingredientCursor = databaseHelper.getReadableDatabase().query(
-                DatabaseHelper.TABLE_RECIPE_INGREDIENTS,
-                null,
-                DatabaseHelper.INGREDIENT_RECIPE_ID + "=?",
-                new String[]{
-                        String.valueOf(recipeId)
-                },
-                null,
-                null,
-                null
-        );
+        Cursor ingredientCursor =
+                databaseHelper.getReadableDatabase().query(
+                        DatabaseHelper.TABLE_RECIPE_INGREDIENTS,
+                        null,
+                        DatabaseHelper.INGREDIENT_RECIPE_ID + "=?",
+                        new String[]{
+                                String.valueOf(recipeId)
+                        },
+                        null,
+                        null,
+                        null
+                );
 
         boolean canMake = true;
 
@@ -151,7 +155,9 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
                     requiredIngredient.trim().toLowerCase();
 
             if (!pantryIngredients.contains(requiredIngredient)) {
+
                 canMake = false;
+
                 break;
             }
         }

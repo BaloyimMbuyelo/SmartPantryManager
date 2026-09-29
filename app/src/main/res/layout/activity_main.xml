@@ -39,6 +39,16 @@
         android:layout_marginBottom="15dp" />
 
     <Button
+        android:id="@+id/btnSuggestedRecipes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Suggested Recipes"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#6F52A5"
+        android:textColor="#FFFFFF" />
+
+    <Button
         android:id="@+id/btnAddIngredient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,6 +56,14 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:backgroundTint="#B87845"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>
