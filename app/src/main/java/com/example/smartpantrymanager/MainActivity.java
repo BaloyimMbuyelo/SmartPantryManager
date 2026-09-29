@@ -1,34 +1,64 @@
 package com.example.smartpantrymanager;
 
-import android.os.Bundle;
 import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private DatabaseHelper databaseHelper;
+    private RecyclerView recyclerViewPantry;
+    private PantryAdapter pantryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        databaseHelper = new DatabaseHelper(this);
+
+        recyclerViewPantry = findViewById(R.id.recyclerViewPantry);
+
+        recyclerViewPantry.setLayoutManager(
+                new LinearLayoutManager(this)
+        );
 
         Button btnAddIngredient = findViewById(R.id.btnAddIngredient);
 
         btnAddIngredient.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, AddIngredientActivity.class);
+
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    AddIngredientActivity.class
+            );
+
             startActivity(intent);
         });
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        loadPantryItems();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        loadPantryItems();
+    }
+
+    private void loadPantryItems() {
+
+        Cursor cursor = databaseHelper.getAllPantryItems();
+
+        pantryAdapter = new PantryAdapter(cursor);
+
+        recyclerViewPantry.setAdapter(pantryAdapter);
     }
 }

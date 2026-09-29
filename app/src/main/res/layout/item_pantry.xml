@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="10dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/tvPantryItemName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Milk"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#5D4037" />
+
+    <TextView
+        android:id="@+id/tvPantryItemDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2 litres"
+        android:textSize="16sp"
+        android:textColor="#555555"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/tvPantryItemExpiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Expiry: 30/09/2026"
+        android:textSize="14sp"
+        android:textColor="#777777"
+        android:layout_marginTop="5dp" />
+
+</LinearLayout>
