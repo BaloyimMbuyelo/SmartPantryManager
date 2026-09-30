@@ -28,7 +28,7 @@ The application uses a strict recipe-matching rule. A recipe is only suggested w
 - Gradle
 - SQLite (included through the application's `SQLiteOpenHelper` implementation)
 
-## How to Run
+## How to Run app
 
 1. Clone the Smart Pantry Manager repository from GitHub.
 2. Open the project in Android Studio.
