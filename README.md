@@ -90,3 +90,13 @@ XML layouts are located under:
 The SQLite database implementation is contained in:
 
 `DatabaseHelper.java`
+
+## Strict-Matching Algorithm
+
+The application uses SQLite queries to determine which recipes can be prepared from the current pantry.
+
+For each recipe, the system checks its required ingredients. An ingredient is considered available when the ingredient name matches a pantry item and the pantry quantity is greater than or equal to the required quantity.
+
+The application uses a `NOT EXISTS` query to exclude any recipe that contains a required ingredient that is missing from the pantry or does not have enough quantity.
+
+This ensures that recipes are only suggested when all required ingredients are available.
