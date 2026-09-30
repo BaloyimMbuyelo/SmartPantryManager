@@ -28,6 +28,15 @@ The application uses a strict recipe-matching rule. A recipe is only suggested w
 - Gradle
 - SQLite (included through the application's `SQLiteOpenHelper` implementation)
 
+## How to Run
+
+1. Clone the Smart Pantry Manager repository from GitHub.
+2. Open the project in Android Studio.
+3. Allow Gradle to synchronise.
+4. Start an Android Emulator or connect an Android device.
+5. Run the application.
+6. Add ingredients to the pantry.
+7. Open Suggested Recipes to see recipes that can currently be prepared.
 
 ## Main Features
 
@@ -90,16 +99,17 @@ Recipes with missing ingredients or insufficient quantities are excluded from th
 - Git
 - GitHub
 
-## How to Run
 
-1. Clone the Smart Pantry Manager repository from GitHub.
-2. Open the project in Android Studio.
-3. Allow Gradle to synchronise.
-4. Start an Android Emulator or connect an Android device.
-5. Run the application.
-6. Add ingredients to the pantry.
-7. Open Suggested Recipes to see recipes that can currently be prepared.
 
+## Strict Recipe Matching
+
+The Suggested Recipes feature uses strict matching to ensure that a recipe is only suggested when all of its required ingredients are available in the user's pantry.
+
+The application checks each recipe against the current pantry ingredients. If a required ingredient is missing, the recipe is excluded from the Suggested Recipes list.
+
+This prevents recipes from being suggested when the user would need to purchase an additional ingredient.
+
+The matching logic is implemented in the SQLite database query in `DatabaseHelper.java`.
 ## Project Structure
 
 Java source files are located under:
