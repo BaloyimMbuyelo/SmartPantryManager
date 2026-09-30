@@ -6,6 +6,29 @@ Smart Pantry Manager is a Java Android application developed to help users reduc
 
 The application uses a strict recipe-matching rule. A recipe is only suggested when the user has every required ingredient in the required quantity.
 
+## How to Run the Application
+
+1. Install and open Android Studio.
+2. Clone or download the Smart Pantry Manager project from this GitHub repository.
+3. Open the project in Android Studio.
+4. Allow Android Studio to sync the Gradle files and download any required dependencies.
+5. Create or start an Android Emulator using the Android Device Manager, or connect an Android device with USB debugging enabled.
+6. Select the `app` configuration and the connected emulator or Android device.
+7. Click the **Run** button in Android Studio.
+8. The Smart Pantry Manager application will install and launch on the selected device.
+9. Add pantry ingredients using **+ Add Ingredient**. Saved ingredients can be viewed, edited, and deleted.
+10. Select **Suggested Recipes** to view recipes that can be prepared using the ingredients currently stored in the pantry.
+
+### Requirements
+
+- Android Studio
+- Java
+- Android SDK
+- Android Emulator or Android device
+- Gradle
+- SQLite (included through the application's `SQLiteOpenHelper` implementation)
+
+
 ## Main Features
 
 - Add pantry ingredients
