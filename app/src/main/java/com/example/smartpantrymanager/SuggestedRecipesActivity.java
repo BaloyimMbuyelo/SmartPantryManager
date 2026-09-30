@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class SuggestedRecipesActivity extends AppCompatActivity {
 
@@ -29,7 +27,9 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
 
         Button btnBack = findViewById(R.id.btnBack);
 
-        btnBack.setOnClickListener(v -> finish());
+        btnBack.setOnClickListener(v -> {
+            getOnBackPressedDispatcher().onBackPressed();
+        });
 
         databaseHelper = new DatabaseHelper(this);
 
@@ -49,122 +49,40 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
 
         suggestedRecipes.clear();
 
-        Set<String> pantryIngredients = getPantryIngredients();
+        Cursor cursor = databaseHelper.getSuggestedRecipes();
 
-        Cursor recipeCursor = databaseHelper.getReadableDatabase().query(
-                DatabaseHelper.TABLE_RECIPES,
-                null,
-                null,
-                null,
-                null,
-                null,
-                DatabaseHelper.RECIPE_NAME + " ASC"
-        );
+        while (cursor.moveToNext()) {
 
-        while (recipeCursor.moveToNext()) {
-
-            int recipeId = recipeCursor.getInt(
-                    recipeCursor.getColumnIndexOrThrow(
+            int recipeId = cursor.getInt(
+                    cursor.getColumnIndexOrThrow(
                             DatabaseHelper.RECIPE_ID
                     )
             );
 
-            String recipeName = recipeCursor.getString(
-                    recipeCursor.getColumnIndexOrThrow(
+            String recipeName = cursor.getString(
+                    cursor.getColumnIndexOrThrow(
                             DatabaseHelper.RECIPE_NAME
                     )
             );
 
-            String method = recipeCursor.getString(
-                    recipeCursor.getColumnIndexOrThrow(
+            String method = cursor.getString(
+                    cursor.getColumnIndexOrThrow(
                             DatabaseHelper.RECIPE_METHOD
                     )
             );
 
-            if (canMakeRecipe(recipeId, pantryIngredients)) {
-
-                suggestedRecipes.add(
-                        new Recipe(
-                                recipeId,
-                                recipeName,
-                                method
-                        )
-                );
-            }
-        }
-
-        recipeCursor.close();
-
-        displayRecipes();
-    }
-
-    private Set<String> getPantryIngredients() {
-
-        Set<String> pantryIngredients = new HashSet<>();
-
-        Cursor cursor = databaseHelper.getAllPantryItems();
-
-        while (cursor.moveToNext()) {
-
-            String ingredientName = cursor.getString(
-                    cursor.getColumnIndexOrThrow(
-                            DatabaseHelper.COL_NAME
+            suggestedRecipes.add(
+                    new Recipe(
+                            recipeId,
+                            recipeName,
+                            method
                     )
-            );
-
-            pantryIngredients.add(
-                    ingredientName.trim().toLowerCase()
             );
         }
 
         cursor.close();
 
-        return pantryIngredients;
-    }
-
-    private boolean canMakeRecipe(
-            int recipeId,
-            Set<String> pantryIngredients
-    ) {
-
-        Cursor ingredientCursor =
-                databaseHelper.getReadableDatabase().query(
-                        DatabaseHelper.TABLE_RECIPE_INGREDIENTS,
-                        null,
-                        DatabaseHelper.INGREDIENT_RECIPE_ID + "=?",
-                        new String[]{
-                                String.valueOf(recipeId)
-                        },
-                        null,
-                        null,
-                        null
-                );
-
-        boolean canMake = true;
-
-        while (ingredientCursor.moveToNext()) {
-
-            String requiredIngredient =
-                    ingredientCursor.getString(
-                            ingredientCursor.getColumnIndexOrThrow(
-                                    DatabaseHelper.INGREDIENT_NAME
-                            )
-                    );
-
-            requiredIngredient =
-                    requiredIngredient.trim().toLowerCase();
-
-            if (!pantryIngredients.contains(requiredIngredient)) {
-
-                canMake = false;
-
-                break;
-            }
-        }
-
-        ingredientCursor.close();
-
-        return canMake;
+        displayRecipes();
     }
 
     private void displayRecipes() {
