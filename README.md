@@ -100,3 +100,18 @@ For each recipe, the system checks its required ingredients. An ingredient is co
 The application uses a `NOT EXISTS` query to exclude any recipe that contains a required ingredient that is missing from the pantry or does not have enough quantity.
 
 This ensures that recipes are only suggested when all required ingredients are available.
+
+## CRUD Functionality
+
+The application supports full CRUD functionality for pantry ingredients:
+
+- Create: Add a new pantry ingredient.
+- Read: View saved ingredients in the pantry list.
+- Update: Edit an existing ingredient.
+- Delete: Remove an ingredient from the pantry.
+
+Pantry data is stored locally using SQLite through SQLiteOpenHelper, so the data persists when the application is closed and reopened.
+
+## Database Choice
+
+SQLite was selected because it provides local on-device persistence without requiring an internet connection or external server. The application uses SQLiteOpenHelper to create and manage the database.
